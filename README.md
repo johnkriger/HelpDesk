@@ -1,14 +1,14 @@
-**HelpDesk**
+# HelpDesk
     Sistema de gerenciamento de chamados de suporte interno desenvolvido como projeto de portfólio.
 
-*Contexto*
+## Contexto
     Uma empresa fictícia possui uma equipe de suporte interno responsável por atender problemas relacionados a computadores, sistemas, acessos e infraestrutura.
 
     Atualmente, as solicitações de suporte podem ser realizadas por diferentes canais, dificultando o acompanhamento dos atendimentos e a organização das demandas.
 
     O HelpDesk tem como objetivo centralizar essas solicitações em um único sistema.
 
-*Objetivos do sistema*
+## Objetivos do sistema
     O sistema tem como objetivos:
         * Evitar que solicitações de suporte sejam esquecidas;
         * Criar um protocolo para cada solicitação;
@@ -19,10 +19,10 @@
 
     O sistema deverá centralizar as solicitações de suporte, permitindo que usuários registrem chamados e acompanhem seu andamento, enquanto os atendentes poderão organizar, assumir, atualizar e encerrar esses chamados.
 
-*Usuários*
+## Usuários
     Inicialmente, o sistema terá dois perfis de usuário.
 
-*Solicitante*
+### Solicitante
     Funcionário que necessita de suporte.
 
     Pode:
@@ -33,8 +33,7 @@
         * Consultar o histórico de seus chamados;
         * Realizar ações permitidas sobre seus chamados, conforme as regras de negócio.
 
-*Atendente*
-
+### Atendente
     Profissional responsável pelo atendimento dos chamados.
 
     Pode:
@@ -48,21 +47,21 @@
         * Encerrar chamados;
         * Consultar o histórico dos atendimentos.
 
-**Escopo**
+# Escopo
 
-*Autenticação*
+## Autenticação
     * Login;
     * Logout;
     * Controle de acesso por perfil.
 
-*Solicitante*
+## Solicitante
     * Abrir chamado;
     * Listar seus chamados;
     * Visualizar chamado;
     * Acompanhar status;
     * Consultar histórico.
 
-*Atendente*
+## Atendente
     * Listar chamados;
     * Filtrar chamados;
     * Visualizar chamado;
@@ -73,7 +72,7 @@
     * Registrar solução;
     * Encerrar chamado.
 
-*Sistema*
+## Sistema
     * Gerenciamento de categorias;
     * Geração de protocolo;
     * Registro do histórico de alterações;
