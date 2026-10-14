@@ -1,5 +1,22 @@
 
 services:
+  app:
+    build: .
+    container_name: helpdesk_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: db
+      DB_DATABASE: helpdesk
+      DB_USERNAME: helpdesk
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+
   db:
     image: mariadb:11.8
     container_name: helpdesk_db
