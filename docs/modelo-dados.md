@@ -25,6 +25,7 @@ erDiagram
 | `senha` | Hash da senha do usuário |
 | `id_perfil` | Referência ao perfil do usuário |
 | `status` | Situação do usuário: ativo ou bloqueado |
+| `erros_login` | Quantidade de erros de senha do usuário |
 
 ### PERFIS
 

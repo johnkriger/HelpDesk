@@ -169,7 +169,7 @@ Em andamento <------------------+
     +--> Pendente de informação |
     |          |                |
     |          v                |
-    |     Em andamento           |
+    |     Em andamento          |
     |                           |
     v                           |
 Finalizado                      |
