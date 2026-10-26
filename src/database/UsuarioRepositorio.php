@@ -40,4 +40,16 @@ class UsuarioRepositorio {
         ]);
     }
 
+    /**
+     * Bloqueia o usuário
+     * @param $idUsuario ID do usuário que está tentando acessar o sistema
+     */
+    public function bloquearUsuario(int $idUsuario): void {
+        $consulta = $this->pdo->prepare(
+            'UPDATE usuarios
+             SET status = "bloqueado"
+             WHERE id = :id'
+        );
+        $consulta->execute(['id' => $idUsuario]);
+    }
 }
