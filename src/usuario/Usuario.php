@@ -1,6 +1,17 @@
 <?php
 
 class Usuario {
+    /** Repositório utilizado para acessar os dados dos usuários. */
+    private UsuarioRepositorio $usuarioRepositorio;
+
+    /**
+     * Inicializa o usuário com o repositório de usuários.
+     *
+     * @param UsuarioRepositorio $usuarioRepositorio Repositório utilizado para acessar os dados dos usuários.
+     */
+    public function __construct(UsuarioRepositorio $usuarioRepositorio){
+        $this->usuarioRepositorio = $usuarioRepositorio;
+    }
 
     /**
      * Busca um usuário pelo endereço de e-mail.
