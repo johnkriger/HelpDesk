@@ -18,15 +18,8 @@ $usuarioRepositorio = new UsuarioRepositorio($pdo);
 $dadosUsuario = $usuarioRepositorio->buscarUsuarioPorEmail($email);
 
 if(is_array($dadosUsuario)) {
-    $usuario = new Usuario();
-    
-    if(!!$usuario->validarSenha($dadosUsuario, $senha)) {
-        $errosCont = 0;
-        $retorno = 'Usuário logado';
-    } else {
-        $errosCont += 1;
-        $retorno = 'Senha incorreta';
-    }
+    $usuario = new Usuario($usuarioRepositorio);
+    $retorno = (!!$usuario->validarSenha($dadosUsuario, $senha)) ? 'Usuário logado' : 'Senha incorreta';
 } else {
     $retorno = 'E-mail não cadastrado';
 }
