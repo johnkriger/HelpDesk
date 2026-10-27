@@ -22,11 +22,12 @@ class Usuario {
      */
     public function validarSenha($dadosUsuario, $senha) {
         $errosSenha = $dadosUsuario['erros_login'];
-        $validacao = (password_verify($senha, $dadosUsuario['senha'])) ? true : false;
+        $validacao = (password_verify($senha, $dadosUsuario['senha']));
 
-        $errosSenha = (!$validacao) ? $dadosUsuario['erros_login'] + 1 : $errosSenha = 0;
+        $errosSenha = (!$validacao) ? (int) $dadosUsuario['erros_login'] + 1 : 0;
         $this->usuarioRepositorio->atualizarErrosLogin($dadosUsuario['id'], $errosSenha);
-        if($errosSenha > 4) $this->usuarioRepositorio->bloquearUsuario($dadosUsuario['id']);
+
+        if($errosSenha >= 5) $this->usuarioRepositorio->bloquearUsuario((int)$dadosUsuario['id']);
     
         return $validacao;
     }
