@@ -1,5 +1,4 @@
 <?php
-
 class Usuario {
     /** Repositório utilizado para acessar os dados dos usuários. */
     private UsuarioRepositorio $usuarioRepositorio;
