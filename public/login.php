@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+session_start();
+
 require_once __DIR__ . '/../src/usuario/Usuario.php';
 require_once __DIR__ . '/../src/database/UsuarioRepositorio.php';
 $pdo = require __DIR__ . '/../config/database.php';
@@ -18,7 +20,17 @@ if(is_array($dadosUsuario)) {
     }
 
     $usuario = new Usuario($usuarioRepositorio);
-    $retorno = ($usuario->validarSenha($dadosUsuario, $senha)) ? 'Usuário logado' : 'Senha incorreta';
+    if($usuario->validarSenha($dadosUsuario, $senha)) {
+        session_regenerate_id(true);
+
+        $_SESSION['usuarioId']       = (int) $dadosUsuario['id'];
+        $_SESSION['usuarioNome']     = $dadosUsuario['nome'];
+        $_SESSION['usuarioPerfilId'] = (int) $dadosUsuario['id_perfil'];
+
+        $retorno = 'Usuário logado';
+    } else {
+        $retorno = 'Senha incorreta';
+    }
 } else {
     $retorno = 'E-mail não cadastrado';
 }
