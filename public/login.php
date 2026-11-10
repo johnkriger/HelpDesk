@@ -27,7 +27,8 @@ if(is_array($dadosUsuario)) {
         $_SESSION['usuarioNome']     = $dadosUsuario['nome'];
         $_SESSION['usuarioPerfilId'] = (int) $dadosUsuario['id_perfil'];
 
-        $retorno = 'Usuário logado';
+        header('Location: /painel.php');
+        exit;
     } else {
         $retorno = 'Senha incorreta';
     }
