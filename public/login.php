@@ -6,7 +6,6 @@ require_once __DIR__ . '/../src/classes/usuario/Usuario.php';
 require_once __DIR__ . '/../src/classes/database/UsuarioRepositorio.php';
 $pdo = require __DIR__ . '/../config/database.php';
 
-$retorno = '';
 $email = '';
 $senha = '';
 
