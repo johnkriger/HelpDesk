@@ -29,11 +29,7 @@ if(is_array($dadosUsuario)) {
 
         header('Location: /painel.php');
         exit;
-    } else {
-        $retorno = 'Senha incorreta';
     }
-} else {
-    $retorno = 'E-mail não cadastrado';
 }
 
-echo $retorno;
+echo 'Credenciais inválidas';
