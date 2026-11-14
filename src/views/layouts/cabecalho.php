@@ -10,4 +10,4 @@
     <link rel="stylesheet" href="/styles/style.css">
     <title>Helpdesk</title>
 </head>
-<body>
+<body class="px-3">
