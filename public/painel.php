@@ -20,12 +20,3 @@ switch($_SESSION['usuarioPerfilId']){
 
 require __DIR__ . '/../src/views/layouts/rodape.php';
 ?>
-
-<h1>Painel do Helpdesk</h1>
-
-<p>Bem vindo, <?= htmlspecialchars(
-        $_SESSION['usuarioNome'],
-        ENT_QUOTES,
-        'utf-8')
-    ?>!
-</p>
