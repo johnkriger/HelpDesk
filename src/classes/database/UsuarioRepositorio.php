@@ -42,7 +42,7 @@ class UsuarioRepositorio {
 
     /**
      * Bloqueia o usuário
-     * @param $idUsuario ID do usuário que está tentando acessar o sistema
+     * @param $idUsuario ID do usuário que está sendo bloqueado
      */
     public function bloquearUsuario(int $idUsuario): void {
         $consulta = $this->pdo->prepare(
@@ -51,5 +51,35 @@ class UsuarioRepositorio {
              WHERE id = :id'
         );
         $consulta->execute(['id' => $idUsuario]);
+    }
+
+    /**
+     * Desbloqueia o usuário
+     * @param $idUsuario ID do usuário que está sendo desbloqueado
+     */
+    public function desbloquearUsuario(int $idUsuario): void {
+        $consulta = $this->pdo->prepare(
+            'UPDATE usuarios
+             SET status = "ativo"
+             WHERE id = :id'
+        );
+        $consulta->execute(['id' => $idUsuario]);
+    }
+
+    /**
+     * Busca todos os usuários do banco
+     * @return array dados dos usuários
+     */
+    public function listarUsuarios(): array {
+        $consulta = $this->pdo->prepare(
+            'SELECT u.id, u.nome, u.email, p.nome AS perfil, u.status 
+                FROM usuarios u
+             INNER JOIN perfis p
+                ON u.id_perfil = p.id
+             ORDER BY u.nome;'
+        );
+
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 }

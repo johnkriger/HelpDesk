@@ -10,7 +10,7 @@ declare(strict_types=1);
     switch ($_SESSION['usuarioPerfilId']) {
         case 1: ?>
             <div class="d-flex gap-3 position-absolute top-50 start-50 translate-middle">
-                <a href="#" class="btn btn-outline-secondary">
+                <a href="/usuarios.php" class="btn btn-outline-secondary">
                    Gerenciamento de Usuários
                 </a>
                 <a href="#" class="btn btn-outline-secondary">
