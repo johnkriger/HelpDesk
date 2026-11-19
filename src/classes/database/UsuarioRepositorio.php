@@ -2,6 +2,11 @@
 class UsuarioRepositorio {
     private PDO $pdo;
 
+    /**
+     * Inicializa o repositório de usuários com uma conexão ao banco de dados.
+     *
+     * @param PDO $pdo Instância de conexão com o banco de dados.
+     */
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
@@ -27,6 +32,7 @@ class UsuarioRepositorio {
      * 
      * @param int $idUsuario  ID do usuário que está tentando acessar o sistema
      * @param int $errosLogin Número de erros consecutivos
+     * @return void
      */
     public function atualizarErrosLogin(int $idUsuario, int $errosLogin): void {
         $consulta = $this->pdo->prepare(
@@ -42,7 +48,9 @@ class UsuarioRepositorio {
 
     /**
      * Bloqueia o usuário
+     * 
      * @param $idUsuario ID do usuário que está sendo bloqueado
+     * @return void
      */
     public function bloquearUsuario(int $idUsuario): void {
         $consulta = $this->pdo->prepare(
@@ -55,7 +63,9 @@ class UsuarioRepositorio {
 
     /**
      * Desbloqueia o usuário
+     * 
      * @param $idUsuario ID do usuário que está sendo desbloqueado
+     * @return void
      */
     public function desbloquearUsuario(int $idUsuario): void {
         $consulta = $this->pdo->prepare(
@@ -68,6 +78,7 @@ class UsuarioRepositorio {
 
     /**
      * Busca todos os usuários do banco
+     * 
      * @return array dados dos usuários
      */
     public function listarUsuarios(): array {
