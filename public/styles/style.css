@@ -21,3 +21,13 @@
 .d-flex {
     align-items: center;
 }
+
+.tabela-usuarios .coluna-status {
+    width: 9rem;
+    white-space: nowrap;
+}
+
+.tabela-usuarios .coluna-acoes {
+    width: 10rem;
+    white-space: nowrap;
+}
