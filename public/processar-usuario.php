@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../src/usuario/verificar-autenticacao.php';
 require_once __DIR__ . '/../src/perfis/verificar-permissao.php';
 require_once __DIR__ . '/../src/classes/database/UsuarioRepositorio.php';
+require_once __DIR__ . '/../src/seguranca/csrf.php';
 
 verificarPermissao([1]);
 
@@ -12,8 +13,20 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$acao = $_POST['acao'] ?? '';
-$idUsuario = filter_input(INPUT_POST, 'id_usuario', FILTER_VALIDATE_INT);
+$tokenSessao   = $_SESSION['tokenCSRF'] ?? '';
+$tokenRecebido = $_POST['tokenCSRF'] ?? '';
+$acao          = $_POST['acao'] ?? '';
+$idUsuario     = filter_input(INPUT_POST, 'id_usuario', FILTER_VALIDATE_INT);
+
+if(!is_int($idUsuario) || $idUsuario <= 0) {
+    http_response_code(400);
+    exit('ID de usuário inválido.');
+}
+
+if($tokenSessao === '' || $tokenRecebido === '' || !hash_equals($tokenSessao, $tokenRecebido)) {
+    http_response_code(403);
+    exit('Requisição inválida.');
+}
 
 $pdo = require __DIR__ . '/../config/database.php';
 $usuariosRepositorio = new UsuarioRepositorio($pdo);
@@ -27,5 +40,5 @@ switch($acao) {
         break;
 }
 
-$usuariosRepositorio->listarUsuarios();
 header('Location: /usuarios.php');
+exit;
