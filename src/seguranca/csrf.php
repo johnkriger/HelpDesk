@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 /**
  * Gera um token CSRF
+ * 
  * @return string Token CSRF
  */
 function gerarTokenCSRF(): string {
