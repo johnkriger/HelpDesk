@@ -1,5 +1,6 @@
 <?php
 /** @var array $usuarios */
+require_once __DIR__ . '/../../seguranca/csrf.php';
 ?>
 <main>
     <h1>Gerenciamento de Usuários</h1>
@@ -24,6 +25,7 @@
                     <td>
                         <form method="POST" action="/processar-usuario.php">
                             <input type="hidden" name="id_usuario" value="<?= $usuario['id'] ?>">
+                            <input type="hidden" name="tokenCSRF" value="<?= htmlspecialchars(gerarTokenCSRF()) ?>">
 
                             <?php if($usuario['perfil'] !== 'Administrador'):?>
                                 <?php if($usuario['status'] == 'bloqueado'): ?>
