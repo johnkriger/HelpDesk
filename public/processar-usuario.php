@@ -23,13 +23,19 @@ if(!is_int($idUsuario) || $idUsuario <= 0) {
     exit('ID de usuário inválido.');
 }
 
+$pdo = require __DIR__ . '/../config/database.php';
+$usuariosRepositorio = new UsuarioRepositorio($pdo);
+
+$usuario = $usuariosRepositorio->buscarUsuarioPorId($idUsuario);
+if (!is_array($usuario) || (int) $usuario['id_perfil'] === 1) {
+    http_response_code(400);
+    exit('Usuário inválido ou não permitido.');
+}
+
 if($tokenSessao === '' || $tokenRecebido === '' || !hash_equals($tokenSessao, $tokenRecebido)) {
     http_response_code(403);
     exit('Requisição inválida.');
 }
-
-$pdo = require __DIR__ . '/../config/database.php';
-$usuariosRepositorio = new UsuarioRepositorio($pdo);
 
 switch($acao) {
     case 'bloquear':
@@ -38,6 +44,9 @@ switch($acao) {
     case 'desbloquear':
         $usuariosRepositorio->desbloquearUsuario($idUsuario);
         break;
+    default:
+        http_response_code(400);
+        exit('Ação inválida.');
 }
 
 header('Location: /usuarios.php');

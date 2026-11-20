@@ -77,6 +77,22 @@ class UsuarioRepositorio {
     }
 
     /**
+     * Busca o usuário pelo ID
+     * 
+     * @param $idUsuario ID do usuário para busca
+     * @return array|false Dados do usuário encontrado ou false se não encontrado.
+     */
+    public function buscarUsuarioPorId(int $idUsuario): array|false {
+        $consulta = $this->pdo->prepare(
+            'SELECT * FROM usuarios WHERE id = :id'
+        );
+        $consulta->execute(['id' => $idUsuario]);
+        $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        return (is_array($usuario)) ? $usuario : false;
+    }
+
+    /**
      * Busca todos os usuários do banco
      * 
      * @return array dados dos usuários
